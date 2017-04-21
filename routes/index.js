@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var Product = require('../models/product');
+
   var csrf=require('csurf');
 var session = require('express-session');
-
+var passport = require('passport');
+var Product = require('../models/product');
 
  var csrfProtection = csrf();
 
@@ -30,11 +31,21 @@ router.get('/user/signup', function(req, res, next) {
 
 });
 
-router.post('/user/signup', function(req, res, next) {
- res.redirect('/');
+router.post('/user/signup', passport.authenticate('local.signup', {
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/login',
+    failureFlash: true
+}));
+
+router.get('/user/profile', function(req, res, next) {
+
+    res.render('user/profile');
+
 });
+router.get('/user/login', function(req, res, next) {
 
+    res.render('user/login');
 
-
+});
 
 module.exports = router;
