@@ -11,6 +11,10 @@ var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 var app = express();
+var routes = require('./routes/index');
+var userRoutes = require('./routes/users');
+
+var mongosession = require('connect-mongo')(session);
 mongoose.connect('localhost:27017/takeawayweb');
 
 
@@ -27,16 +31,28 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: 'password', resave: false,saveUninitialized: false }));
+app.use(session({ 
+  secret: 'password', resave: false,saveUninitialized: false,store:new mongosession({mongooseConnection:mongoose.connection}),
+   cookie:{maxAge:120*60*1000*60}
+   }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(function(req,res,next){
+	res.locals.loginin=req.isAuthenticated();
+    res.locals.session=req.session;
+  
+	next();
+})
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', index);
+app.use('/user', userRoutes);
 app.use('/', index);
+
 
 
 // catch 404 and forward to error handler
