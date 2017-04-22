@@ -14,6 +14,7 @@ module.exports = function foodCart(OldCartItems){
         storedFood.price=storedFood.quantity*storedFood.item.price;
         this.totalQuantity++;
         this.totalPrice+=storedFood.item.price;
+        
 	};
 	this.generateArray = function () {
         var arr = [];

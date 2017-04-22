@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
- 
+
 // var passport = require('passport');
 var Product = require('../models/product');
 
@@ -64,7 +64,7 @@ router.get('/add-to-food-cart/:id', function(req, res, next) {
 // });
 
 
-router.get('/food-cart', function (req, res, next) {
+router.get('/food-cart',function (req, res, next) {
     if (!req.session.foodcart) {
         return res.render('food/food-cart', {products: null});
     }
@@ -110,3 +110,6 @@ router.get('/food-cart', function (req, res, next) {
 
 
 module.exports = router;
+
+
+

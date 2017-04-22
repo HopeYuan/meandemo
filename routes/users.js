@@ -16,9 +16,9 @@ var csrfProtection = csrf();
 router.use(csrfProtection);
 
 
-router.get('/profile', isloggedin,function(req, res, next) {
+router.get('/warning', isloggedin,function(req, res, next) {
 
-    res.render('user/profile');
+    res.render('user/warning');
 
 });
 
@@ -43,7 +43,7 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-    successRedirect: 'user/profile',
+    successRedirect: '/',
     failureRedirect: 'user/signup',
     failureFlash: true
 }));
@@ -56,7 +56,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local.login', {
-    successRedirect: '/user/profile',
+    successRedirect: '/',
     failureRedirect: '/user/login',
     failureFlash: true
 }));
