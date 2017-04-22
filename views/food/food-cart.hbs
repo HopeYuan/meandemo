@@ -1,0 +1,69 @@
+
+{{# if products }}
+
+<div class="row">
+  
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+    <ul class="list-group"> 
+
+    {{# each products}}
+    <li class="list-group-item">
+      <span class="badge">{{this.quantity}}</span>
+
+      <strong>{{this.item.title}}</strong>
+       <strong>€{{this.price}}</strong>
+    }
+
+      <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" > Action <span class="caret"></span>
+     </button>
+                      <ul class="dropdown-menu">
+                                <li><a href="#">Reduce 1 Food</a></li>
+                                <li><a href="#">Remove All Food</a></li>
+                            </ul>
+
+                </li>
+                {{/each}}
+       </ul>
+            </div>
+             </div>
+
+
+
+
+
+             <div class="row">
+  
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                 <strong>Total:{{totalPrice}}</strong>
+  
+            </div>
+             </div>
+
+
+
+          <div class="row">
+  
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+              <button type="button" class="btn btn-success">Pay </button>
+  
+          </div>
+          </div>
+
+
+
+{{else}}
+
+
+
+
+
+
+
+          <div class="row">
+  
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <strong>No food added</strong>
+          </div>
+          </div>
+
+{{/if}}

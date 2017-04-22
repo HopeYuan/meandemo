@@ -17,7 +17,14 @@
       
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="#">Shopping Cart</a></li>
+        <li><a href="/food-cart">Shopping Cart 
+        <span class="badge">{{session.foodcart.totalQuantity}}</span>
+         </a>
+
+         </li>
+
+
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Info <span class="caret"></span></a>
           <ul class="dropdown-menu">

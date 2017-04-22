@@ -10,7 +10,7 @@ var foodCart=require('../models/foodcart');
 //  var csrfProtection = csrf();
 
 // router.use(csrfProtection);
-// var FoodItem=require('..models/fooditem')
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -40,10 +40,41 @@ router.get('/add-to-food-cart/:id', function(req, res, next) {
        foodcart.add(product,product.id);
        req.session.foodcart = foodcart;
        console.log(req.session.foodcart);
+
        return res.redirect('/');
     });
 	
 });
+
+
+// router.get('/food-cart', function (req, res, next) {
+
+	
+//     if (!req.session.foodcart) {
+//         return res.render('food/food-cart', {products: null});
+//     }
+
+//    // console.log(req.session.foodcart.items);
+
+//     var fooditems = new foodCart(req.session.foodcart.items);
+//      console.log(foodcart);
+ 
+    
+//     res.render('food/food-cart', {products: fooditems.generateArray(), totalPrice: fooditems.totalPrice});
+// });
+
+
+router.get('/food-cart', function (req, res, next) {
+    if (!req.session.foodcart) {
+        return res.render('food/food-cart', {products: null});
+    }
+    var fooditems = new foodCart(req.session.foodcart);
+    // console.log(fooditems);
+      // req.session.foodcart.items = foodcart;
+    // console.log(req.session.foodcart.items);
+    res.render('food/food-cart', {products: fooditems.generateArray(), totalPrice: fooditems.totalPrice});
+});
+
 
 
 

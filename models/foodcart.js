@@ -3,6 +3,8 @@ module.exports = function foodCart(OldCartItems){
 	this.totalQuantity=OldCartItems.totalQuantity|| 0;
 	this.totalPrice=OldCartItems.totalPrice|| 0;
 
+      console.log(OldCartItems,"OldCartItems");
+
 	 this.add = function (item, id) {
         var storedFood = this.items[id];
         if(!storedFood){
@@ -13,11 +15,16 @@ module.exports = function foodCart(OldCartItems){
         this.totalQuantity++;
         this.totalPrice+=storedFood.item.price;
 	};
-	this.foodList=function(){
-    var list=[];
-   for (var id in this.items) {
-            list.push(this.items[id]);
+	this.generateArray = function () {
+        var arr = [];
+        for (var id in this.items) {
+            arr.push(this.items[id]);
         }
-        return list;
+        return arr;
     };
-}
+};
+ 
+
+ 
+
+ 
